@@ -1,9 +1,22 @@
-# Gobang Using Processing
+# [第二次作业：创意编程的结构模式-创意编程工具]作业
+
+- 熟悉processing中提供的绘图函数；
+- 自行设计构形规则，利用processing中提供的绘图函数进行造型图案创作。
+
 ## 项目内容
+
 语言：Processing
 
 实现：可交互的五子棋游戏，黑白两方对弈，交替落子
+
+## 运行结果
+
+<div align=center>
+    <img src="https://cdn.jsdelivr.net/gh/freedomyyt/Photos/截屏2021-10-19 下午4.45.18.png"/>
+</div>
+
 ## 利用的绘图函数
+
 ```processing
 size()
 ```
@@ -38,7 +51,9 @@ rect()
 ellipse()
 ```
 绘制椭圆形
+
 ## 亮点
+
 ```processing
 stroke(0,0,0);
 for (int y=24;y<=696;y+=48)
@@ -57,6 +72,13 @@ ellipse(floor((mouseX-24)/48)*48+48, floor((mouseY-24)/48)*48+48, 40, 40);
 根据光标位置确定落子位置，把光标坐标在棋盘格上严格映射
 
 ## 不足
+
 艺术设计涉及不深(本人典型工科男，审美可能走偏)
 
 时间有限及课程本身取向，未去实现五子棋胜负的判断
+
+## Author
+
+name:freedomyyt 
+
+school:SJTU
