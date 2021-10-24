@@ -80,10 +80,10 @@ void setup()
 
   //clear paint
   fill(225,193,116);
-  rect(80,900,115,70);
+  rect(80,700,115,70);
   fill(255);
   textSize(50);
-  text("clear",85,950);
+  text("clear",85,750);
 
   strokeWeight(2);
   stroke(0);
@@ -287,7 +287,7 @@ void draw()
         circle(180,570,25);
       }
 
-      else if ((mouseX>80)&&(mouseX<195)&&(mouseY>900)&&(mouseY<970))
+      else if ((mouseX>80)&&(mouseX<195)&&(mouseY>700)&&(mouseY<770))
       {
         fill(255);
         rect(300,10,1600,1060);
