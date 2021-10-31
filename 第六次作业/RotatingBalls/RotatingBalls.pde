@@ -1,7 +1,3 @@
-
-import processing.video.*;
-
-
 int dot_num = 50;
 int max_rotation_radius = 50; //max rotating radius
 int rotation_radius[] = new int[dot_num];  //rotation radius of each ball
