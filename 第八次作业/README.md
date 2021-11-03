@@ -12,9 +12,19 @@
 
 ## 运行结果
 
-在大约第七代后，有超过90%的小点能成功抵达目标。
-
 演示视频：<https://github.com/freedomyyt/518021910952-YeYangtao/blob/main/第八次作业/演示视频.mp4>
+
+初始状态：没有小点抵达目标
+
+<div align=center>
+    <img src="https://cdn.jsdelivr.net/gh/freedomyyt/Photos/截屏2021-11-03 下午8.19.53.png"/>
+</div>
+
+在大约第七代之后，有超过90%的小点能成功抵达目
+
+<div align=center>
+    <img src="https://cdn.jsdelivr.net/gh/freedomyyt/Photos/截屏2021-11-03 下午8.20.34.png"/>
+</div>
 
 ## Author
 
