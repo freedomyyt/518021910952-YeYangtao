@@ -451,13 +451,141 @@ cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
 
 2. 颜色名称，如blue，输入结束后点按"颜色确认"按钮。
 
-#### 3. 图片文件路径，输入结束后点按"路径确认"按钮，等待一段时间。
+3. 图片文件路径，输入结束后点按"路径确认"按钮，等待一段时间(2MB的图片约等待7秒钟)。
     
-约束：图片文件为png,jpg格式；尽量不要大于10MB，否则颜色提取时间延长；路径不含中文(cv2限制)；路径不需要加引号""
+    注意：图片文件为png,jpg格式；尽量不要大于10MB，否则颜色提取时间延长；路径不含中文(cv2限制)；路径不需要加引号""
 
-路径示例：C:\Users\freedomyyt\Downloads\photos\photo3.png
+    路径示例：C:\Users\freedomyyt\Downloads\photos\photo3.png
+
+#### 主题色呈现和选择组件
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121201712.png"/>
+</div>
+
+从用户上传路径的图片中提取得到7个主题色彩，呈现在绘图板界面上，供用户观察和选择，点击意向颜色右侧的"选择"按钮即可选中该颜色。
+
+```Python
+# 主题色提取(基于MMCQ算法)
+#路径确认
+def path_sure():
+    global choosecolor
+    global themes
+    path = [getc.get()]
+    print(path)
+
+    # color extract begin
+    pixDatas = list(map(getPixData, path))
+    maxColor = 7
+    themes = [testMMCQ(pixDatas, maxColor)]
+    #transfer RGB to HEX and use for painting
+    choosecolor=RGB_to_Hex(themes[0][0][0])
+    print(choosecolor)
+    # showLab.config(bg=choosecolor)
+    showLab.config(bg=RGB_to_Hex(themes[0][0][0]))
+    showLab1.config(bg=RGB_to_Hex(themes[0][0][0]))
+    showLab2.config(bg=RGB_to_Hex(themes[0][0][1]))
+    showLab3.config(bg=RGB_to_Hex(themes[0][0][2]))
+    showLab4.config(bg=RGB_to_Hex(themes[0][0][3]))
+    showLab5.config(bg=RGB_to_Hex(themes[0][0][4]))
+    showLab6.config(bg=RGB_to_Hex(themes[0][0][5]))
+    showLab7.config(bg=RGB_to_Hex(themes[0][0][6]))
+```
+
+```Python
+# 主题色呈现
+tmplb1 = Label(cce, text="颜色1")
+showLab1 = Label(cce, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab1.pack(padx=10, side=LEFT)
+
+# 主题色选择
+cokbtn = Button(cce, text="选择", command=color_1_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+```
+
+```Python
+# 主题色1选取
+def color_1_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][0])
+    showLab.config(bg=choosecolor)
+```
+
+#### 任意颜色选取组件
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121202258.png"/>
+</div>
+
+点击"所有色彩"，即可打开取色板，可以选择任意颜色作为画笔颜色。
+
+#### 画笔宽度选择组件
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121200901.png"/>
+</div>
+
+```Python
+# 画笔宽度选择
+Omf = Frame(tk)
+Omf.pack()
+tmplb3 = Label(Omf, text="选择画笔宽度")
+tmplb3.pack(side=LEFT)
+sizevar = IntVar()
+SizeList = [x for x in range(20, 90, 6)]
+showoutput(SizeList)
+sizevar.set(SizeList[0])
+ShowOption = OptionMenu(Omf, sizevar, *SizeList)
+ShowOption.pack(side=LEFT)
+```
+
+#### 橡皮组件
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121200919.png"/>
+</div>
+
+```Python
+eraser = Button(Omf, text="橡皮", relief=RAISED, command=erase)
+eraser.pack(side=LEFT, ipadx=20, padx=50)
+```
+
+```Python
+def erase():
+    global dercnt
+    global choosecolor
+    global tmpcolor
+    if dercnt == 0:
+        # eraser.config(relief=RAISED)
+        eraser.config(relief=FLAT)
+        tmpcolor = choosecolor
+        choosecolor = "#F0F0F0"
+        dercnt += 1
+    else:
+        # eraser.config(relief=FLAT)
+        eraser.config(relief=RAISED)
+        choosecolor = tmpcolor
+        dercnt -= 1
+```
+
+橡皮功能也可以在"画笔宽度"处选择橡皮宽度，"橡皮"按钮按下和释放时有不同界面，方便用户区分当前是否处于橡皮状态。
+
+按下状态：
+
+<div align=center>
+
+</div>
 
 ## 运行结果
+
+### Novel_Sketchpad界面
+
+<div align=center>
+
+</div>
 
 ## Author
 
