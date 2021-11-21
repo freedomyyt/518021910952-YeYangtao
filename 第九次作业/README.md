@@ -388,6 +388,75 @@ from tkinter import *
 from tkinter.colorchooser import *
 ```
 
+#### 基础框架
+
+```Python
+tk = Tk()
+tk.title("Canvas Paint 1.1.3")
+···
+tk.mainloop()
+```
+
+#### Tkinter 框架（Frame）控件在屏幕上显示一个矩形区域，用来作为容器
+
+```Python
+cce = Frame(tk, relief=SUNKEN)
+```
+
+#### 已选颜色展示框
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121195527.png"/>
+</div>
+
+```Python
+#已选颜色展示
+tmplb1 = Label(cco, text="展示:")
+showLab = Label(cco, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab.pack(padx=10, side=LEFT)\
+```
+
+#### 颜色输入组件
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121195806.png"/>
+</div>
+
+```Python
+# 颜色输入
+tmplb2 = Label(cco, text="颜色选择 可输入[#十六进制][颜色名][文件路径(不含中文,不含\"符号)]")
+tmplb2.pack(side=LEFT)
+getc = Entry(cco, width=60)
+getc.pack(side=LEFT)
+```
+
+```Python
+# 颜色确认
+cokbtn = Button(cco, text="颜色确认", command=color_sure)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+```
+
+```Python
+# 路径确认
+cokbtn = Button(cco, text="路径确认", command=path_sure)
+getc.bind("<Return>", path_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+```
+
+有三种颜色输入方法：
+
+1. 六位十六进制，如#f0b951，输入结束后点按"颜色确认"按钮。
+
+2. 颜色名称，如blue，输入结束后点按"颜色确认"按钮。
+
+#### 3. 图片文件路径，输入结束后点按"路径确认"按钮，等待一段时间。
+    
+约束：图片文件为png,jpg格式；尽量不要大于10MB，否则颜色提取时间延长；路径不含中文(cv2限制)；路径不需要加引号""
+
+路径示例：C:\Users\freedomyyt\Downloads\photos\photo3.png
+
 ## 运行结果
 
 ## Author
