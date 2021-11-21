@@ -14,8 +14,8 @@ DEBUG = False
 dercnt = 0
 
 # RGB格式颜色转换为16进制颜色格式
-def RGB_to_Hex(rgb):
-    RGB = rgb.split(',')            # 将RGB格式划分开来
+def RGB_to_Hex(RGB):
+    # RGB = rgb.split(',')            # 将RGB格式划分开来
     color = '#'
     for i in RGB:
         num = int(i)
@@ -257,7 +257,9 @@ def usingAsk():
     getc.insert(1, myColor[1])
 
 choosecolor = "black"
+themes = [[[0,0,0]]]
 
+# 颜色确认
 def color_sure():
     global choosecolor
     choosecolor = getc.get()
@@ -267,18 +269,93 @@ def color_sure():
 def color_sure_fun(self):
     color_sure()
 
+#路径确认
 def path_sure():
     global choosecolor
+    global themes
     path = [getc.get()]
     print(path)
+
+    # color extract begin
     pixDatas = list(map(getPixData, path))
     maxColor = 7
     themes = [testMMCQ(pixDatas, maxColor)]
+    # print(themes)
+    # print(themes[0][0][0])
+    # print(themes[0][0][1])
+    # print(themes[0][0][2])
+    # print(themes[0][0][3])
+    # print(themes[0][0][4])
+    # print(themes[0][0][5])
+    # print(themes[0][0][6])
     # imgPalette(pixDatas, themes, ["MMCQ Palette"])
-    print('RGB:',themes)
-    print('color extracting finished')
+    # print('RGB:',themes[0][0][0])
+    # color extract finished
+
+    #transfer RGB to HEX and use for painting
+    choosecolor=RGB_to_Hex(themes[0][0][0])
+    print(choosecolor)
+    # showLab.config(bg=choosecolor)
+    showLab.config(bg=RGB_to_Hex(themes[0][0][0]))
+    showLab1.config(bg=RGB_to_Hex(themes[0][0][0]))
+    showLab2.config(bg=RGB_to_Hex(themes[0][0][1]))
+    showLab3.config(bg=RGB_to_Hex(themes[0][0][2]))
+    showLab4.config(bg=RGB_to_Hex(themes[0][0][3]))
+    showLab5.config(bg=RGB_to_Hex(themes[0][0][4]))
+    showLab6.config(bg=RGB_to_Hex(themes[0][0][5]))
+    showLab7.config(bg=RGB_to_Hex(themes[0][0][6]))
+
 def path_sure_fun(self):
     path_sure()
+
+# 主题色1选取
+def color_1_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][0])
+    showLab.config(bg=choosecolor)
+
+# 主题色2选取
+def color_2_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][1])
+    showLab.config(bg=choosecolor)
+
+# 主题色3选取
+def color_3_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][2])
+    showLab.config(bg=choosecolor)
+
+# 主题色4选取
+def color_4_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][3])
+    showLab.config(bg=choosecolor)
+
+# 主题色5选取
+def color_5_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][4])
+    showLab.config(bg=choosecolor)
+
+# 主题色6选取
+def color_6_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][5])
+    showLab.config(bg=choosecolor)
+
+# 主题色7选取
+def color_7_choose():
+    global choosecolor
+    global themes
+    choosecolor=RGB_to_Hex(themes[0][0][6])
+    showLab.config(bg=choosecolor)
 
 tmpcolor: str
 
@@ -308,6 +385,13 @@ def cls():
     global choosecolor
     getc.delete(0, END)
     showLab.config(bg="white")
+    showLab1.config(bg="white")
+    showLab2.config(bg="white")
+    showLab3.config(bg="white")
+    showLab4.config(bg="white")
+    showLab5.config(bg="white")
+    showLab6.config(bg="white")
+    showLab7.config(bg="white")
     choosecolor = "black"
     canvas.delete("all")
 
@@ -364,16 +448,19 @@ cco.pack(pady=5)
 cce = Frame(tk, relief=SUNKEN)
 cce.pack(pady=5)
 
-# 需要一个展示框，一个文本框
+ccf = Frame(tk, relief=SUNKEN)
+ccf.pack(pady=5)
+
+#已选颜色展示
 tmplb1 = Label(cco, text="展示:")
 showLab = Label(cco, width=15, relief=GROOVE, bg="white")
 tmplb1.pack(side=LEFT)
 showLab.pack(padx=10, side=LEFT)
 
 #颜色选择
-tmplb2 = Label(cco, text="颜色选择 可输入[#十六进制][颜色名][文件路径(不含中文)]")
+tmplb2 = Label(cco, text="颜色选择 可输入[#十六进制][颜色名][文件路径(不含中文,不含\"符号)]")
 tmplb2.pack(side=LEFT)
-getc = Entry(cco, width=30)
+getc = Entry(cco, width=60)
 getc.pack(side=LEFT)
 
 cokbtn = Button(cco, text="颜色确认", command=color_sure)
@@ -384,8 +471,72 @@ cokbtn = Button(cco, text="路径确认", command=path_sure)
 getc.bind("<Return>", path_sure_fun)
 cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
 
-askbtn = Button(cco, text="使用Ask", command=usingAsk)
+askbtn = Button(cco, text="所有色彩", command=usingAsk)
 askbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+tmplb1 = Label(cce, text="颜色1")
+showLab1 = Label(cce, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab1.pack(padx=10, side=LEFT)
+
+cokbtn = Button(cce, text="选择", command=color_1_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+tmplb1 = Label(cce, text="颜色2")
+showLab2 = Label(cce, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab2.pack(padx=10, side=LEFT)
+
+cokbtn = Button(cce, text="选择", command=color_2_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+
+tmplb1 = Label(cce, text="颜色3")
+showLab3 = Label(cce, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab3.pack(padx=10, side=LEFT)
+
+cokbtn = Button(cce, text="选择", command=color_3_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+tmplb1 = Label(cce, text="颜色4")
+showLab4 = Label(cce, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab4.pack(padx=10, side=LEFT)
+
+cokbtn = Button(cce, text="选择", command=color_4_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+tmplb1 = Label(ccf, text="颜色5")
+showLab5 = Label(ccf, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab5.pack(padx=10, side=LEFT)
+
+cokbtn = Button(ccf, text="选择", command=color_5_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+tmplb1 = Label(ccf, text="颜色6")
+showLab6 = Label(ccf, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab6.pack(padx=10, side=LEFT)
+
+cokbtn = Button(ccf, text="选择", command=color_6_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+tmplb1 = Label(ccf, text="颜色7")
+showLab7 = Label(ccf, width=15, relief=GROOVE, bg="white")
+tmplb1.pack(side=LEFT)
+showLab7.pack(padx=10, side=LEFT)
+
+cokbtn = Button(ccf, text="选择", command=color_7_choose)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
 
 # optionMenu
 Omf = Frame(tk)
