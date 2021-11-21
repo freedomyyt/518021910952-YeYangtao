@@ -343,13 +343,41 @@ dataList.forEach((data, index) => {
 
 ### 算法比较
 
-三种算法计算后结果,从左到右四列分别为原图，kmeans聚类结果，中位切分结果，八叉树划分结果
+#### 三种算法提取结果(基于参考作者的TypeScript代码)：
+
+从左到右四列分别为原图，kmeans聚类结果，中位切分结果，八叉树划分结果
 
 <div align=center>
     <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211114010738.png"/>
 </div>
 
 ## 软件实现
+
+### 主题色彩提取算法
+
+#### 三种算法运行结果(基于Python代码)：
+
+使用python实现了KMeans聚类(KMeans)、中位切分(MMCQ)、八叉树(OQ)三种算法，对四张单张大小约为2MB的图片运行该主题色彩提取代码，结果如下图所示：
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/Comparison.png"/>
+</div>
+
+#### 三种算法运行时间：
+
+四张图片提取总时间：
+
+KMeans Time cost: 950.59375
+
+MMCQ Time cost: 32.609375
+
+OQ Time cost: 242.078125
+
+#### 方案选择
+
+综合提取效果和运行时间，选择中位切分算法
+
+### 绘图界面
 
 ## 运行结果
 
