@@ -8,6 +8,23 @@
 
 实现：一个绘图软件，可提取用户给定图片中的主要色彩成分，以此作为绘图调色盘，用户可选择画笔颜色和笔迹粗细，实现对优秀艺术作品配色的提取、借鉴和再创作。
 
+功能清单：
+
+- 十六进制画笔颜色输入
+
+- 颜色名称画笔颜色输入
+
+- 根据用户提供的文件路径索引图片，提取图片的主题颜色作为可选的画笔颜色
+
+- 色板选择任意画笔颜色
+
+- 画笔宽度选取
+
+- 橡皮擦功能
+
+- 一键清除画布功能
+
+
 ## 几种色彩提取算法：
 
 ### kmeans聚类算法
@@ -624,9 +641,27 @@ def cls():
 
 ### 选择任意颜色
 
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121203546.png"/>
+</div>
+
 ### 橡皮功能
 
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121203650.png"/>
+</div>
+
 ### 不同粗细画笔
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121203814.png"/>
+</div>
+
+### 一键清除功能
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121203942.png"/>
+</div>
 
 ## Author
 
