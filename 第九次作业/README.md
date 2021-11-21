@@ -353,6 +353,8 @@ dataList.forEach((data, index) => {
 
 ## 软件实现
 
+Processing IDE即使使用了Python模式也不可以随意import库，存在诸多限制，考虑到软件实现的自由度，放弃Processing IDE，采用作者习惯的Vscode+Python Extension这一开发模式,并使用PyInstaller这一工具打包为exe可执行文件。
+
 ### 主题色彩提取算法
 
 #### 三种算法运行结果(基于Python代码)：
@@ -375,9 +377,16 @@ OQ Time cost: 242.078125
 
 #### 方案选择
 
-综合提取效果和运行时间，选择中位切分算法
+综合提取效果和运行时间，选择中位切分算法(MMCQ)
 
 ### 绘图界面
+
+使用tk画板实现人机交互和绘图界面,通过画布、输入框、按钮控件实现图片主题色提取、笔迹选择、调色板和绘制等人机交互功能。
+
+```Python
+from tkinter import *
+from tkinter.colorchooser import *
+```
 
 ## 运行结果
 
