@@ -553,7 +553,7 @@ ShowOption.pack(side=LEFT)
 eraser = Button(Omf, text="橡皮", relief=RAISED, command=erase)
 eraser.pack(side=LEFT, ipadx=20, padx=50)
 
-canvas = Canvas(tk, width=640, height=300, relief=SUNKEN)
+canvas = Canvas(tk, width=1200, height=700, relief=SUNKEN)
 canvas.pack(expand=True, fill=BOTH)
 
 btn = Button(tk, text="清除所有", command=cls)
