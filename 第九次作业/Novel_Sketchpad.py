@@ -13,6 +13,17 @@ from functools import reduce
 DEBUG = False
 dercnt = 0
 
+# RGB格式颜色转换为16进制颜色格式
+def RGB_to_Hex(rgb):
+    RGB = rgb.split(',')            # 将RGB格式划分开来
+    color = '#'
+    for i in RGB:
+        num = int(i)
+        # 将R、G、B分别转化为16进制拼接转换并大写  hex() 函数用于将10进制整数转换成16进制，以字符串形式表示
+        color += str(hex(num))[-2:].replace('x', '0').upper()
+    print(color)
+    return color
+
 # VBOX,MMCQ类：中位切分算法(MMCQ)
 class VBox(object):
     """
@@ -243,17 +254,31 @@ def usingAsk():
     choosecolor = myColor[1]
     showLab.config(bg=choosecolor)
     getc.delete(0, END)
-    getc.insert(0, myColor[1])
+    getc.insert(1, myColor[1])
 
 choosecolor = "black"
 
-def sure():
+def color_sure():
     global choosecolor
     choosecolor = getc.get()
+    print(choosecolor)
     showLab.config(bg=choosecolor)
 
-def sure_fun(self):
-    sure()
+def color_sure_fun(self):
+    color_sure()
+
+def path_sure():
+    global choosecolor
+    path = [getc.get()]
+    print(path)
+    pixDatas = list(map(getPixData, path))
+    maxColor = 7
+    themes = [testMMCQ(pixDatas, maxColor)]
+    # imgPalette(pixDatas, themes, ["MMCQ Palette"])
+    print('RGB:',themes)
+    print('color extracting finished')
+def path_sure_fun(self):
+    path_sure()
 
 tmpcolor: str
 
@@ -324,7 +349,7 @@ def testMMCQ(pixDatas, maxColor):
     start  = time.process_time()
     themes = list(map(lambda d: MMCQ(d, maxColor).quantize(), pixDatas))
     print("MMCQ Time cost: {0}".format(time.process_time() - start))
-    print("MMCQ Result:",themes)
+    # print("MMCQ Result:",themes)
     return themes
 
 tk = Tk()
@@ -346,23 +371,21 @@ tmplb1.pack(side=LEFT)
 showLab.pack(padx=10, side=LEFT)
 
 #颜色选择
-tmplb2 = Label(cco, text="可输入[#十六进制]和[颜色名](示例:#123456)")
+tmplb2 = Label(cco, text="颜色选择 可输入[#十六进制][颜色名][文件路径(不含中文)]")
 tmplb2.pack(side=LEFT)
 getc = Entry(cco, width=30)
 getc.pack(side=LEFT)
 
-cokbtn = Button(cco, text="确认", command=sure)
-getc.bind("<Return>", sure_fun)
+cokbtn = Button(cco, text="颜色确认", command=color_sure)
+getc.bind("<Return>", color_sure_fun)
+cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
+
+cokbtn = Button(cco, text="路径确认", command=path_sure)
+getc.bind("<Return>", path_sure_fun)
 cokbtn.pack(side=LEFT, ipadx=3, ipady=3)
 
 askbtn = Button(cco, text="使用Ask", command=usingAsk)
 askbtn.pack(side=LEFT, ipadx=3, ipady=3)
-
-#参考图片路径输入
-tmplb2 = Label(cce, text="可输入参考图片路径(示例:C:/Users/freedomyyt/Downloads/photos/photo1.png,路径必须为全英文")
-tmplb2.pack(side=RIGHT)
-getc = Entry(cce, width=30)
-getc.pack(side=LEFT)
 
 # optionMenu
 Omf = Frame(tk)
