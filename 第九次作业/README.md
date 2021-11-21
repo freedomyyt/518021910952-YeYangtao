@@ -627,6 +627,10 @@ def cls():
 
 ## 运行结果
 
+提供打包好的可执行程序上手体验：<https://github.com/freedomyyt/518021910952-YeYangtao/tree/main/%E7%AC%AC%E4%B9%9D%E6%AC%A1%E4%BD%9C%E4%B8%9A/Novel_Sketchpad>
+
+双击Novel_Sketchpad.exe文件即可运行
+
 ### Novel_Sketchpad界面
 
 <div align=center>
