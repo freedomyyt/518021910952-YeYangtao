@@ -364,7 +364,10 @@ if __name__ == '__main__':
     # print(testKmeans([getPixData()], 7))
     print('start')
 
-    imgs = map(lambda i: 'C:/Users/freedomyyt/Downloads/photos/photo%s.png' % i, range(1,5))
+    # imgs = map(lambda i: 'C:/Users/freedomyyt/Downloads/photos/photo%s.png' % i, range(1,2))
+    # print(imgs)
+    imgs = ['C:/Users/freedomyyt/Downloads/photos/photo3.png']
+    print(imgs)
     pixDatas = list(map(getPixData, imgs))
     maxColor = 7
     themes = [testMMCQ(pixDatas, maxColor)]
