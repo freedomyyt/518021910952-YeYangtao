@@ -576,16 +576,57 @@ def erase():
 按下状态：
 
 <div align=center>
-
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121202808.png"/>
 </div>
+
+#### 一键清除功能
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121202905.png"/>
+</div>
+
+```Python
+btn = Button(tk, text="清除所有", command=cls)
+btn.pack(pady=5)
+```
+
+```Python
+def cls():
+    global choosecolor
+    getc.delete(0, END)
+    showLab.config(bg="white")
+    showLab1.config(bg="white")
+    showLab2.config(bg="white")
+    showLab3.config(bg="white")
+    showLab4.config(bg="white")
+    showLab5.config(bg="white")
+    showLab6.config(bg="white")
+    showLab7.config(bg="white")
+    choosecolor = "black"
+    canvas.delete("all")
+```
+
+在画板底部，点按后画布内容，画笔颜色等信息都将被清空。
 
 ## 运行结果
 
 ### Novel_Sketchpad界面
 
 <div align=center>
-
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/20211121203231.png"/>
 </div>
+
+### 主题色由图片提取：
+
+<div align=center>
+  <img src="https://raw.githubusercontent.com/freedomyyt/Photos/main/photo3.png"/>
+</div>
+
+### 选择任意颜色
+
+### 橡皮功能
+
+### 不同粗细画笔
 
 ## Author
 
